@@ -1,0 +1,5 @@
+export const SET_VALUE = 'UI/FORMS/SET_VALUE'
+
+export const CREATE_FORM = 'UI/FORMS/CREATE_FORM'
+
+export const RESET_FORM = 'UI/FORMS/RESET_FORM'

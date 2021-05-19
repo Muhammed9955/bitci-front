@@ -1,0 +1,58 @@
+.ob-td
+  width    : 100%
+  position : relative
+
+.ob-div
+  width    : 33.3333333%
+  float    : left
+  position : relative
+  z-index  : 99
+  padding  : 0 3px
+
+.ob-div.amount
+  text-align : center
+
+.ob-div.total-red
+  color      : #ef403f
+  text-align : right
+
+.ob-div.total-green
+  color      : #46b86d
+  text-align : right
+
+.bar-red
+  height     : 15px
+  width      : 100%
+  position   : absolute
+  top        : 4px
+  right      : 0
+  left       : 0
+  background : rgba(239, 64, 63, 0.20)
+
+
+.bar-green
+  height     : 15px
+  width      : 100%
+  position   : absolute
+  top        : 4px
+  right      : 0
+  left       : 0
+  background : rgba(70, 184, 109, 0.20)
+
+.increment-area
+  padding       : 5px
+  width         : 100%
+  text-align    : center
+  font-size     : 16px
+  font-weight   : 400
+  margin        : 2px 0
+  &.green
+    background    : rgba($green, .2)
+    color         : $green
+    border-top    : 1px solid #325747
+    border-bottom : 1px solid #325747
+  &.red
+    background : rgba($red, .2)
+    color: $red
+    border-top    : 1px solid #912928
+    border-bottom : 1px solid #912928

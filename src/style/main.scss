@@ -1,0 +1,47 @@
+@import "~bootstrap/scss/bootstrap";
+
+$green: #46b86d;
+$red: #ef403f;
+$cyan: #1cb9bb;
+$gray: rgba(#fff, 0.5);
+
+.btn {
+  border-radius: 0;
+  height: 40px;
+  font-size: 14px;
+}
+
+.btn-sm {
+  height: 25px;
+  font-size: 12px;
+  line-height: 13px;
+  padding: 4px 10px;
+}
+
+.btn-lg {
+  height: 50px;
+  font-size: 14px;
+}
+
+.btn-success {
+  @include button-variant($green, $green);
+}
+
+.btn-danger {
+  @include button-variant($red, $red);
+}
+
+.btn-info {
+  @include button-variant($cyan, $cyan);
+}
+
+.btn-outline-info {
+  @include button-outline-variant($cyan);
+}
+
+.btn-outline-secondary {
+  @include button-outline-variant($gray, $white, $cyan, $cyan);
+}
+
+@include text-emphasis-variant(".text-success", $green) @include
+  text-emphasis-variant(".text-secondary", $gray);

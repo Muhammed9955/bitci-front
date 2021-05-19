@@ -1,0 +1,178 @@
+// register-box
+.form-items-box
+  background: #f
+  border-top 4px solid $blue
+  margin-bottom 60px
+
+.form-wrapper
+  width 98%
+  max-width: 660px
+  margin auto
+  display flex
+  flex-direction: column
+  justify-content: space-between
+  min-height 100vh
+  padding 40px 0
+
+header.title-area
+  background: rgba($blue, .1)
+  
+  .logo-area
+    text-align center
+    transform translateY(-50%)
+    margin-bottom -30px
+    img
+      width 56px
+  
+  h3
+    font-weight 300
+    color $dark
+    font-size 32px
+    padding .5em 1em 1em
+    @media screen and (max-width 760px)
+      padding .5em
+
+.form-container
+  padding 50px 35px
+  @media screen and (max-width 760px)
+    padding 30px 25px
+
+  .form-check
+    padding-left 0
+    span.text
+      flex 1
+    input
+      display none!important
+      &:checked ~ .check-item
+        border-color $blue
+        border-radius 0
+        border-top-color transparent
+        border-left-color transparent
+        width 10px
+        transform rotate(45deg)
+        margin-right 15px
+        opacity: 1!important
+    .check-item
+      width 18px
+      height 18px
+      border 2px solid rgba($blue, .54)
+      transition all 300ms
+      display inline-block
+      border-radius: 2px
+      margin-right 10px
+
+  .form-group
+    margin-bottom 32px
+    @media screen and (max-width 760px)
+      margin-bottom 0
+      input
+        margin-bottom 20px
+
+  label
+    font-weight 300
+    color $dark
+    font-size 20px
+
+input.textbox
+  font-size 16px
+  border-bottom 1px solid rgba($dark, .12)
+  width 100%
+  padding-bottom 8px
+  color $blue
+  font-weight 400
+  
+  &::-webkit-input-placeholder
+    color rgba($dark, .25)
+  &::-ms-input-placeholder
+    color rgba($dark, .25)
+  &::-moz-placeholder
+    color rgba($dark, .25)
+  &:-moz-placeholder
+    color rgba($dark, .25)
+  &:focus
+    border-bottom 2px solid $blue
+
+.agreement-text
+  color $dark
+  font-size 16px!important
+  line-height 22px!important
+  display flex
+  a
+    color $blue!important
+    font-weight: 600
+    
+
+.submit-btn
+  background: $blue
+  color #ffffff
+  font-size 20px
+  font-weight 600
+  display block
+  width 100%
+  letter-spacing: 2px
+  line-height 60px
+  cursor pointer
+  transition: all 300ms
+  margin-top 25px
+  &.has-margin-top
+    @media screen and (min-width 760px)
+      margin-top 60px
+  &:hover
+    background: $green
+
+.simple-text
+  text-align: center
+  display block
+  margin-top 30px
+  color $dark
+  font-size 20px
+  font-weight 300
+  margin-bottom 0!important
+  a
+    color $blue!important
+    font-weight 700
+    transition: all 300ms
+    &:hover
+      color $dark!important
+
+footer.footer
+  ul
+    display flex
+    @media screen and (max-width 760px)
+      flex-wrap: wrap
+      li
+        margin-right: 15px!important
+        a
+          font-size 14px!important
+    li
+      margin-right 25px
+      a
+        font-size 20px
+        color #f
+        transition: all 300ms
+        font-weight 100
+        text-decoration none
+        &:hover
+          color $blue
+
+.copyright
+  border-top 1px solid $blue
+  text-align: center
+  padding-top 15px
+  margin-top 25px
+  display block
+  color #f
+  font-size 14px
+  font-weight 300
+
+.logo
+  text-align: center
+  margin-bottom 80px
+  img
+    margin-left -30px
+    max-width: 100%
+    width 245px
+
+
+.modal-content
+  border-radius 0!important

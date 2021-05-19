@@ -1,0 +1,40 @@
+div[data-info]
+  position: relative
+
+  &.has-error
+    &:after
+      content attr(data-info)
+      display block
+      margin-top 5px
+      color $red
+      font-size 12px
+      font-weight 400
+      background: url(../img/danger@2x.png)no-repeat right
+      background-size 17px 15px
+.has-error
+  input
+    border-color $red!important
+    border-width: 2px!important
+
+.description
+  color $dark
+  font-size 16px
+  border-bottom: 2px solid rgba($blue, .1)
+  padding 35px
+  margin-bottom -15px
+  font-weight 300
+  @media screen and (max-width 760px)
+    padding 20px
+  a
+    color $blue!important
+    line-height 22px
+
+p.simple-text.has-btns
+  @media screen and (max-width 760px)
+    display flex
+    align-items: center
+
+.close
+  opacity 1!important
+  img
+    width 32px

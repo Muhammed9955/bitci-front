@@ -1,0 +1,3 @@
+export const SET_USERS = 'ADMIN/SET_USERS'
+
+export const CHANGE_USER_ID_VERIF = 'ADMIN/CHANGE_USER_ID_VERIF'

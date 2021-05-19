@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-13977 -2496 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.5;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="ic_phonelink_lock_white_24px" class="cls-1" transform="translate(-13977 -2496)">
+    <path id="Path_3908" data-name="Path 3908" class="cls-2" d="M0,0H24V24H0Z"/>
+    <path id="Path_3909" data-name="Path 3909" class="cls-3" d="M19,1H9A2.006,2.006,0,0,0,7,3V6H9V4H19V20H9V18H7v3a2.006,2.006,0,0,0,2,2H19a2.006,2.006,0,0,0,2-2V3A2.006,2.006,0,0,0,19,1ZM10.8,11V9.5A2.746,2.746,0,0,0,8,7,2.746,2.746,0,0,0,5.2,9.5V11A1.29,1.29,0,0,0,4,12.2v3.5A1.309,1.309,0,0,0,5.2,17h5.5A1.309,1.309,0,0,0,12,15.8V12.3A1.309,1.309,0,0,0,10.8,11ZM9.5,11h-3V9.5A1.375,1.375,0,0,1,8,8.2,1.375,1.375,0,0,1,9.5,9.5Z" transform="translate(0)"/>
+  </g>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14361 -2325 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.75;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="ic_3d_rotation_white_24px" class="cls-1" transform="translate(-14361 -2325)">
+    <path id="Path_3914" data-name="Path 3914" class="cls-2" d="M0,0H24V24H0Z"/>
+    <path id="Path_3915" data-name="Path 3915" class="cls-3" d="M7.52,21.48A10.487,10.487,0,0,1,1.55,13H.05A11.994,11.994,0,0,0,12,24l.66-.03L8.85,20.16,7.52,21.48ZM12,0l-.66.03,3.81,3.81,1.33-1.33a10.47,10.47,0,0,1,5.96,8.48h1.5A11.977,11.977,0,0,0,12,0Z"/>
+    <g id="Group_5307" data-name="Group 5307" transform="translate(15938 2323)">
+      <path id="Subtraction_1" data-name="Subtraction 1" class="cls-3" d="M4.272,9.229A3.881,3.881,0,0,1,.492,6.265a4.274,4.274,0,0,0,7.56,0A3.882,3.882,0,0,1,4.272,9.229Z" transform="translate(-15926.803 -2312.097)"/>
+      <circle id="Ellipse_5" data-name="Ellipse 5" class="cls-3" cx="4.47" cy="4.47" r="4.47" transform="translate(-15927 -2313.228)"/>
+    </g>
+    <g id="Group_5308" data-name="Group 5308" class="cls-1" transform="translate(15933 2318)">
+      <path id="Subtraction_1-2" data-name="Subtraction 1" class="cls-3" d="M4.272,9.229A3.881,3.881,0,0,1,.492,6.265a4.274,4.274,0,0,0,7.56,0A3.882,3.882,0,0,1,4.272,9.229Z" transform="translate(-15926.803 -2312.097)"/>
+      <circle id="Ellipse_5-2" data-name="Ellipse 5" class="cls-3" cx="4.47" cy="4.47" r="4.47" transform="translate(-15927 -2313.228)"/>
+    </g>
+  </g>
+</svg>
