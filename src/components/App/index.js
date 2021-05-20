@@ -5,9 +5,10 @@ import { ConnectedRouter } from "react-router-redux";
 import { ThemeProvider } from "emotion-theming";
 
 import store, { history } from "store";
-import Header from "components/organisms/Header";
-import NewHeader from "components/organisms/Header/Header";
-import Footer from "components/organisms/Footer";
+// import Header from "components/organisms/Header";
+import Header from "components/organisms/Header/Header";
+import TopBar from "components/organisms/Header/TopBar";
+// import Footer from "components/organisms/Footer";
 import Toasts from "components/organisms/Toasts";
 import ExchangePage from "components/pages/ExchangePage";
 import WalletsPage from "components/pages/WalletsPage";
@@ -33,8 +34,9 @@ class App extends Component {
         <ConnectedRouter history={history}>
           <ThemeProvider theme={theme}>
             <div className={$.app}>
+              {/* <Desktop component={Header} /> */}
               <Desktop component={Header} />
-              <Desktop component={NewHeader} />
+              <Desktop component={TopBar} />
 
               <Desktop component={Switch}>
                 <Route path={paths.EXCHANGE} component={ExchangePage} />
@@ -53,7 +55,7 @@ class App extends Component {
               </Desktop>
 
               <Desktop component="div">
-                <Footer />
+                {/* <Footer /> */}
                 <Toasts />
               </Desktop>
 

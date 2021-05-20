@@ -16,6 +16,7 @@ import Modal from "components/atoms/Modal";
 import Button from "components/atoms/Button";
 
 import * as $ from "./index.style";
+import theme from "../../../theme";
 
 const NAMES = {
   ORDER_BOOK: "orderBook",
@@ -38,24 +39,22 @@ class ExchangePage extends React.Component {
 
     return (
       <Page>
-        <div className="row h-100">
+        <div className="row h-100" >
           {/* left column */}
           <div className="col-md-3 col-xs-3 d-flex flex-column">
             <PairsPanel />
 
-            <OrdersPanel />
-            <Balances />
+            {/* <OrdersPanel /> */}
+            {/* <Balances /> */}
           </div>
-
           {/* middle column */}
-          <div className="col-md-6 col-xs-6 d-flex flex-column">
+          <div className="col-md-4 col-xs-4 d-flex flex-column">
             <Charts />
             <OrdersManager />
           </div>
-
           {/* right column */}
           <div className="col-md-3 col-xs-3 d-flex flex-column">
-            {!extend && <Ticker />}
+            {/* {!extend && <Ticker />} */}
             {(!extend || extend === NAMES.ORDER_BOOK) && (
               <OrderBook
                 onMouseEnter={() => this._extend(NAMES.ORDER_BOOK)}
@@ -69,6 +68,20 @@ class ExchangePage extends React.Component {
               />
             )}
           </div>
+          <div className="col-md-2 col-xs-2 d-flex flex-column   ">
+            <div className="">dscsd</div>
+            <div className="">dscsd</div>
+          </div>
+          {/* footer left    */}
+          <div className="col-md-8 col-xs-8 d-flex flex-column  text-black">
+            <div className="">dscsd</div>
+            <div className="">dscsd</div>
+          </div>
+          {/* footer right    */}
+          <div className="col-md-4 col-xs-4 d-flex flex-column text-black ">
+            <div className="">dscsd</div>
+            <div className="">dscsd</div>
+          </div>{" "}
         </div>
         {showCrossOrder && (
           <Modal onClose={this._toggleShowCrossOrder}>

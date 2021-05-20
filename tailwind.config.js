@@ -10,3 +10,7 @@ module.exports = {
   },
   plugins: [],
 };
+// "start": "node scripts/start.js",
+// "build": "node scripts/build.js && npm run build:embedded",
+// "build:embedded": "node scripts/build-embedded.js",
+// "test": "node scripts/test.js --env=jsdom"

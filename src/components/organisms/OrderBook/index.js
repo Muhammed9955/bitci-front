@@ -1,130 +1,166 @@
-import React from 'react'
-import cs from 'classnames'
-import {connect} from 'react-redux'
-import {getTranslate} from 'react-localize-redux'
-import {cx} from 'react-emotion'
-import numeral from 'numeral'
+import React from "react";
+import cs from "classnames";
+import { connect } from "react-redux";
+import { getTranslate } from "react-localize-redux";
+import { cx } from "react-emotion";
+import numeral from "numeral";
 
-import {connectData, DATA_TYPES} from 'utils/collector'
-import {SellDepthTable, BuyDepthTable} from 'components/organisms/DepthTable'
-import {Desktop, Mobile} from 'components/layout'
-import {setValue} from 'store/state/ui/forms/actions'
-import {ORDER_BUY, ORDER_SELL} from 'store/state/ui/forms/constants'
-import {getPriceFormat} from 'store/state/app/selectors'
+import { connectData, DATA_TYPES } from "utils/collector";
+import { SellDepthTable, BuyDepthTable } from "components/organisms/DepthTable";
+import { Desktop, Mobile } from "components/layout";
+import { setValue } from "store/state/ui/forms/actions";
+import { ORDER_BUY, ORDER_SELL } from "store/state/ui/forms/constants";
+import { getPriceFormat } from "store/state/app/selectors";
 
-import * as $ from './index.style'
-
+import * as $ from "./index.style";
+import theme from "../../../theme";
 
 class OrderBook extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       isHovering: false,
-    }
+    };
   }
 
   render() {
-    const {currPrice, isGreater, selectedPair, l, format} = this.props
-    const {isHovering} = this.state
+    const { currPrice, isGreater, selectedPair, l, format } = this.props;
+    const { isHovering } = this.state;
 
-    const icon = cs('icon ml-2', {
-      'icon-triangle-up': isGreater,
-      'icon-triangle-down': !isGreater,
-    })
+    const icon = cs("icon ml-2", {
+      "icon-triangle-up": isGreater,
+      "icon-triangle-down": !isGreater,
+    });
     const incrementArea = cs($.incrementArea, {
       [$.incrementAreaGreen]: isGreater,
       [$.incrementAreaRed]: !isGreater,
-    })
-    const currencies = selectedPair ? selectedPair.split('-') : ['', '']
+    });
+    const currencies = selectedPair ? selectedPair.split("-") : ["", ""];
 
     return (
-      <div className={cx('main-item-box full-width', $.orderBook)}
-           onMouseEnter={this._onMouseEnter} onMouseLeave={this._onMouseLeave}>
-        <Desktop component='header'>
-          <h3>{l('title')}</h3>
+      <div
+        className={cx("main-item-box full-width", $.orderBook)}
+        style={{ background: "white", color: "black" }}
+        onMouseEnter={this._onMouseEnter}
+        onMouseLeave={this._onMouseLeave}
+      >
+        <Desktop component="header">
+          <h3 style={{ color: "black" }}>{l("title")}</h3>
         </Desktop>
-        <div className={cx('default-table', $.table)}>
-          <div className={$.header}>
-            <div className={$.head}>{l('columns.price', {currency: currencies[1]})}</div>
-            <div className={$.head}>{l('columns.amount')} <Mobile>({currencies[0]})</Mobile></div>
-            <Desktop component='div' className={$.head}>{l('columns.total')}</Desktop>
+        <div className={cx("default-table", $.table)} style={{ width: "100%" }}>
+          <div
+            className={$.header}
+            style={{ background: theme.colors.mainGray, padding: ".5rem" }}
+          >
+            <div className={$.head}>
+              <div style={{ color: theme.colors.mainDarkGray }}>
+                {l("columns.price", { currency: currencies[1] })}
+              </div>
+            </div>
+            <div className={$.head}>
+              <div style={{ color: theme.colors.mainDarkGray }}>
+                {l("columns.amount")} <Mobile>({currencies[0]})</Mobile>
+              </div>
+            </div>
+            <Desktop component="div" className={$.head}>
+              <div style={{ color: theme.colors.mainDarkGray }}>
+                {l("columns.total")}
+              </div>
+            </Desktop>
           </div>
           <div className={$.depthTableContainer}>
-            <SellDepthTable lower red isHovering={isHovering} onLineClick={this._onSellLineClick}/>
+            <BuyDepthTable
+              green
+              isHovering={isHovering}
+              onLineClick={this._onBuyLineClick}
+            />
           </div>
           <div className={incrementArea}>
             {format(currPrice)}&nbsp;
-            <Desktop component='i' className={icon} style={{width: 14, height: 8}}/>
+            <Desktop
+              component="i"
+              className={icon}
+              style={{ width: 14, height: 8 }}
+            />
           </div>
           <div className={$.depthTableContainer}>
-            <BuyDepthTable green isHovering={isHovering} onLineClick={this._onBuyLineClick}/>
+            <SellDepthTable
+              lower
+              red
+              isHovering={isHovering}
+              onLineClick={this._onSellLineClick}
+            />
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   _onMouseEnter = (event) => {
-    const {onMouseEnter} = this.props
+    const { onMouseEnter } = this.props;
 
     if (onMouseEnter) {
       this.setState({
         isHovering: true,
-      })
+      });
 
-      return onMouseEnter(event)
+      return onMouseEnter(event);
     }
-  }
+  };
 
   _onMouseLeave = (event) => {
-    const {onMouseLeave} = this.props
+    const { onMouseLeave } = this.props;
 
     if (onMouseLeave) {
       this.setState({
         isHovering: false,
-      })
+      });
 
-      return onMouseLeave(event)
+      return onMouseLeave(event);
     }
-  }
+  };
 
-  _onSellLineClick = ({price}) => {
-    const {onSellPriceClick} = this.props
+  _onSellLineClick = ({ price }) => {
+    const { onSellPriceClick } = this.props;
 
-    onSellPriceClick(price)
-  }
+    onSellPriceClick(price);
+  };
 
-  _onBuyLineClick = ({price}) => {
-    const {onBuyPriceClick} = this.props
+  _onBuyLineClick = ({ price }) => {
+    const { onBuyPriceClick } = this.props;
 
-    onBuyPriceClick(price)
-  }
+    onBuyPriceClick(price);
+  };
 }
 
-const mapDataToProps = ({current: currPrice = 0, prev: prevCurrPrice = 0}) => ({
+const mapDataToProps = ({
+  current: currPrice = 0,
+  prev: prevCurrPrice = 0,
+}) => ({
   currPrice,
   isGreater: currPrice > prevCurrPrice,
-})
+});
 
-const mapStateToProps = ({app, locale}) => ({
+const mapStateToProps = ({ app, locale }) => ({
   selectedPair: app.selectedPair,
-  l: (key, params) => getTranslate(locale)('orderBookPanel.' + key, params),
+  l: (key, params) => getTranslate(locale)("orderBookPanel." + key, params),
   format: (val) => numeral(val).format(getPriceFormat(app)),
-})
+});
 
 const mapDispatchToProps = (dispatch) => {
   const setPrices = (price) => {
-    dispatch(setValue(ORDER_BUY, 'limit', price))
-    dispatch(setValue(ORDER_SELL, 'limit', price))
-  }
+    dispatch(setValue(ORDER_BUY, "limit", price));
+    dispatch(setValue(ORDER_SELL, "limit", price));
+  };
 
   return {
     onBuyPriceClick: setPrices,
     onSellPriceClick: setPrices,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  connectData(DATA_TYPES.COLL_CURRENT_PRICE, mapDataToProps)(OrderBook),
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(connectData(DATA_TYPES.COLL_CURRENT_PRICE, mapDataToProps)(OrderBook));
