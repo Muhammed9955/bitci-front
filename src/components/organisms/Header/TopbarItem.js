@@ -6,7 +6,15 @@ const TopbarItem = ({ title, value }) => {
 
   return (
     <div className=" d-flex flex-column mx-1 bg-white mx-3">
-      <div className="" style={{ fontSize: ".5rem", color: gray }}>
+      <div
+        className=""
+        style={{
+          fontSize: ".5rem",
+          color: gray,
+          // minWidth: "6rem",
+          // background: "red",
+        }}
+      >
         {title}
       </div>
       <div className="" style={{ fontSize: ".6rem" }}>

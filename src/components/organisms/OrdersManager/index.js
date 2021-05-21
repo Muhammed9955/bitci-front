@@ -6,13 +6,25 @@ import { connect } from "react-redux";
 import { ORDER_TYPES } from "utils/constants";
 
 import Inner from "./views/inner";
+import theme from "../../../theme";
 
+const btnStyle = {
+  background: theme.colors.mainGray,
+  color: theme.colors.mainDarkGray,
+  fontWeight: "bold",
+};
+const btnStyleActive = {
+  background: "green",
+  color: "white",
+  fontWeight: "bold",
+};
 class OrdersManager extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      type: ORDER_TYPES.MARKET,
+      type: ORDER_TYPES.LIMIT,
+      activeBtn: 0,
     };
 
     this._setType = this._setType.bind(this);
@@ -30,19 +42,37 @@ class OrdersManager extends React.Component {
       <div
         className="main-item-box"
         // style={{ background: "white", color: "black" }}
-        style={{ height: "40vh", background: "black" }}
+        style={{ height: "40vh", background: "white" }}
       >
+        <div className="d-flex flex-row">
+          <button
+            className="col-md-6 p-2"
+            style={this.state.activeBtn === 0 ? btnStyleActive : btnStyle}
+            onClick={() =>
+              this.setState({
+                ...this.state,
+                activeBtn: 0,
+              })
+            }
+          >
+            BTC Al
+          </button>
+          <button
+            className="col-md-6 p-2"
+            style={this.state.activeBtn === 1 ? btnStyleActive : btnStyle}
+            onClick={() =>
+              this.setState({
+                ...this.state,
+                activeBtn: 1,
+              })
+            }
+          >
+            BTC Sat
+          </button>
+        </div>
         <header>
           <ul className="box-list-items">
             <li className="multiple-links more-padding">
-              <a
-                className={marketBtn}
-                onClick={() => this._setType(ORDER_TYPES.MARKET)}
-                tabIndex="0"
-                style={{ color: "black" }}
-              >
-                {l("market")}
-              </a>
               <a
                 className={limitBtn}
                 onClick={() => this._setType(ORDER_TYPES.LIMIT)}
@@ -50,6 +80,14 @@ class OrdersManager extends React.Component {
                 style={{ color: "black" }}
               >
                 {l("limit")}
+              </a>
+              <a
+                className={marketBtn}
+                onClick={() => this._setType(ORDER_TYPES.MARKET)}
+                tabIndex="0"
+                style={{ color: "black" }}
+              >
+                {l("market")}
               </a>
               <a
                 className={stopBtn}
@@ -62,7 +100,7 @@ class OrdersManager extends React.Component {
             </li>
           </ul>
         </header>
-        <Inner type={type} />
+        {/* <Inner type={type} activeBtn={this.state.activeBtn} /> */}
       </div>
     );
   }

@@ -44,9 +44,19 @@ const Header = (props) => {
   });
   console.log({ profitAndLoss });
   const profitAndLossForPair = profitAndLoss.filter(
-    (i) => i.selectedPair === selectedPair
+    (i) => i.Pair === selectedPair
   );
-  // console.log({ profitAndLossForPair });
+  console.log({ profitAndLossForPair });
+  const totalamount =
+    profitAndLossForPair.length > 0 && profitAndLossForPair[0].totalamount;
+  const avgcost =
+    profitAndLossForPair.length > 0 && profitAndLossForPair[0].avgcost;
+  const totalcost =
+    profitAndLossForPair.length > 0 && profitAndLossForPair[0].totalcost;
+  const total = current * totalamount;
+  const fark = total - totalcost;
+  const farkP = (fark / totalcost).toFixed(2);
+
   return (
     <div
       className="text-black  mt-2 mb-4 mx-3 "
@@ -98,34 +108,13 @@ const Header = (props) => {
         </div>
       </div>
       <div className="p-2 d-flex flex-row bg-white mr-1 ">
-        <TopbarItem
-          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
-          title="Adet"
-        />
-        <TopbarItem
-          value={profitAndLoss.length > 0 && profitAndLoss[0].avgcost}
-          title="Ort. Br. Maliyet"
-        />
-        <TopbarItem
-          value={profitAndLoss.length > 0 && profitAndLoss[0].totalcost}
-          title="Toplam Maliyet"
-        />
-        <TopbarItem
-          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
-          title="Şimdiki Toplam Değeri"
-        />
-        <TopbarItem
-          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
-          title="Fark"
-        />
-        <TopbarItem
-          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
-          title="Fark%"
-        />
-        <TopbarItem
-          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
-          title="Global Değer"
-        />
+        <TopbarItem value={totalamount} title="Adet" />
+        <TopbarItem value={avgcost} title="Ort. Br. Maliyet" />
+        <TopbarItem value={totalcost} title="Toplam Maliyet" />
+        <TopbarItem value={total} title="Şimdiki Toplam Değeri" />
+        <TopbarItem value={fark} title="Fark" />
+        <TopbarItem value={farkP} title="Fark%" />
+        <TopbarItem value={""} title="Global Değer" />
       </div>
     </div>
   );

@@ -90,7 +90,7 @@ const OrderForm = (props) => {
   return (
     <div className={$.orderForm} style={{ color: "black" }}>
       <Desktop component="div">
-        {[TYPES.STOP, TYPES.LIMIT].includes(type) && (
+        {/* {[TYPES.STOP, TYPES.LIMIT].includes(type) && (
           <ul className="inner-list">
             <li>
               <a
@@ -111,16 +111,23 @@ const OrderForm = (props) => {
               </a>
             </li>
           </ul>
-        )}
+        )} */}
         {[TYPES.STOP].includes(type) && (
           <div className="dashboard-input" style={{ color: "black" }}>
             <div className="row align-items-end">
-              <span className="title col-md-4 col-xs-4">{l("stop")}</span>
+              <span
+                className="title col-md-4 col-xs-4"
+                style={{ color: "black" }}
+              >
+                {l("stop")}
+                Stop
+              </span>
               <NumberInput
                 className={inputClass}
                 format={priceFormat}
                 value={stop}
                 onChange={(value) => onChange("stop", value)}
+                placeholder="Stop"
               />
               <span className="item-area">
                 <small>{secondCurrency}</small>
@@ -145,7 +152,12 @@ const OrderForm = (props) => {
         {[TYPES.STOP, TYPES.LIMIT].includes(type) && (
           <div className="dashboard-input">
             <div className="row align-items-end">
-              <span className="title col-md-4 col-xs-4">{l("limit")}</span>
+              <span
+                className="title col-md-4 col-xs-4"
+                style={{ color: "black" }}
+              >
+                {l("limit")}
+              </span>
               <NumberInput
                 className={inputClass}
                 value={limit}
@@ -174,7 +186,12 @@ const OrderForm = (props) => {
         )}
         <div className="dashboard-input">
           <div className="row align-items-end">
-            <span className="title col-md-4 col-xs-4">{l("amount")}</span>
+            <span
+              className="title col-md-4 col-xs-4"
+              style={{ color: "black" }}
+            >
+              {l("amount")}
+            </span>
             <NumberInput
               className={cs("is-active", inputClass)}
               format={amountFormat}

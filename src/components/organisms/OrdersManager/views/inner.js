@@ -29,8 +29,8 @@ class Inner extends React.Component {
 
     return (
       <div className={innerClassName} style={{ color: "black" }}>
-        {this._renderBuySide()}
-        {this._renderSellSide()}
+        {this.props.activeBtn === 0 && this._renderBuySide()}
+        {this.props.activeBtn === 1 && this._renderSellSide()}
       </div>
     );
   }
@@ -39,7 +39,7 @@ class Inner extends React.Component {
     const { type, currency } = this.props;
     const { size = 0, limit = 0, stop = 0 } = this.props[ORDER_BUY];
 
-    const sideClassName = cs("col-md-6 col-xs-6", $.side);
+    const sideClassName = cs("col-md-12 col-xs-12", $.side);
 
     return (
       <div className={sideClassName} style={{ color: "black" }}>
@@ -61,7 +61,7 @@ class Inner extends React.Component {
     const { type, currency } = this.props;
     const { size = 0, limit = 0, stop = 0 } = this.props[ORDER_SELL];
 
-    const sideClassName = cs("col-md-6 col-xs-6", $.side);
+    const sideClassName = cs("col-md-12 col-xs-12", $.side);
 
     return (
       <div className={sideClassName} style={{ color: "black" }}>
