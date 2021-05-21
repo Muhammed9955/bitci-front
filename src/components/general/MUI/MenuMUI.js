@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
-export default function MenuMUI({ options }) {
+export default function MenuMUI({ options, btnStyle }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -16,7 +16,10 @@ export default function MenuMUI({ options }) {
 
   return (
     <div>
-      <Button  onClick={handleClick} style={{ fontSize: "1rem" }}>
+      <Button
+        onClick={handleClick}
+        style={btnStyle ? btnStyle : { fontSize: "1rem" }}
+      >
         {options[0]}
       </Button>
       <Menu

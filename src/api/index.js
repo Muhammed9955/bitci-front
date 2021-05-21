@@ -30,7 +30,14 @@ const genFormDataWithFilesMap = (filesMap) => {
 
   return formData;
 };
+//new APIs
+export const getProfitLoss = () =>
+  axios
+    .get("/getprofitloss")
+    .then(({ data: pairs }) => pairs)
+    .catch(catchHandlerCreator([]));
 
+    // old APIs
 export const getPairs = () =>
   axios
     .get("/pairs")

@@ -17,10 +17,10 @@ export const incrementArea = css`
 `
 
 export const incrementAreaGreen = css`
-  background: ${theme.colors.halfGreen};
+  /* background: ${theme.colors.halfGreen};
   color: ${theme.colors.green};
   border-top: 1px solid #325747;
-  border-bottom: 1px solid #325747;
+  border-bottom: 1px solid #325747; */
 `
 
 export const incrementAreaRed = css`

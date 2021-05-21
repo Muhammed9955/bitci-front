@@ -41,31 +41,44 @@ class OrderBook extends React.Component {
     return (
       <div
         className={cx("main-item-box full-width", $.orderBook)}
-        style={{ background: "white", color: "black" }}
+        style={{ background: "white", color: "black", height: "50vh" }}
         onMouseEnter={this._onMouseEnter}
         onMouseLeave={this._onMouseLeave}
       >
         <Desktop component="header">
-          <h3 style={{ color: "black" }}>{l("title")}</h3>
+          <h3 style={{ color: "black" }}>
+            {/* {l("title")} */}
+            Emir Defteri
+          </h3>
         </Desktop>
         <div className={cx("default-table", $.table)} style={{ width: "100%" }}>
           <div
             className={$.header}
-            style={{ background: theme.colors.mainGray, padding: ".5rem" }}
+            style={{
+              background: theme.colors.mainGray,
+              padding: ".5rem",
+            }}
           >
-            <div className={$.head}>
+            <div className={$.head} style={{ fontSize: ".5rem" }}>
               <div style={{ color: theme.colors.mainDarkGray }}>
-                {l("columns.price", { currency: currencies[1] })}
+                {/* {l("columns.price", { currency: currencies[1] })} */}
+                Fiyat (TRY){" "}
               </div>
             </div>
-            <div className={$.head}>
+            <div className={$.head} style={{ fontSize: ".5rem" }}>
               <div style={{ color: theme.colors.mainDarkGray }}>
-                {l("columns.amount")} <Mobile>({currencies[0]})</Mobile>
+                {/* {l("columns.amount")} <Mobile>({currencies[0]})</Mobile> */}
+                Miktar (BTC)
               </div>
             </div>
-            <Desktop component="div" className={$.head}>
+            <Desktop
+              component="div"
+              className={$.head}
+              style={{ fontSize: ".5rem" }}
+            >
               <div style={{ color: theme.colors.mainDarkGray }}>
-                {l("columns.total")}
+                {/* {l("columns.total")} */}
+                Toplam
               </div>
             </Desktop>
           </div>

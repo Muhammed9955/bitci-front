@@ -17,6 +17,7 @@ import Button from "components/atoms/Button";
 
 import * as $ from "./index.style";
 import theme from "../../../theme";
+import { Grid } from "@material-ui/core";
 
 const NAMES = {
   ORDER_BOOK: "orderBook",
@@ -39,50 +40,70 @@ class ExchangePage extends React.Component {
 
     return (
       <Page>
-        <div className="row h-100" >
+        <div className="row h-100">
           {/* left column */}
-          <div className="col-md-3 col-xs-3 d-flex flex-column">
-            <PairsPanel />
+          <Grid container>
+            <Grid item sm={8} xs={12} style={{ height: "80vh" }}>
+              <div
+                className="col-md-12 col-xs-12 d-flex flex-row"
+                style={{ height: "40vh" }}
+              >
+                <div className="col-md-4 col-xs-4 d-flex flex-column">
+                  <PairsPanel />
 
-            {/* <OrdersPanel /> */}
-            {/* <Balances /> */}
-          </div>
-          {/* middle column */}
-          <div className="col-md-4 col-xs-4 d-flex flex-column">
-            <Charts />
-            <OrdersManager />
-          </div>
-          {/* right column */}
-          <div className="col-md-3 col-xs-3 d-flex flex-column">
-            {/* {!extend && <Ticker />} */}
-            {(!extend || extend === NAMES.ORDER_BOOK) && (
-              <OrderBook
-                onMouseEnter={() => this._extend(NAMES.ORDER_BOOK)}
-                onMouseLeave={() => this._extend(null)}
-              />
-            )}
-            {(!extend || extend === NAMES.TRADE_HISTORY) && (
-              <TradeHistory
-                onMouseEnter={() => this._extend(NAMES.TRADE_HISTORY)}
-                onMouseLeave={() => this._extend(null)}
-              />
-            )}
-          </div>
-          <div className="col-md-2 col-xs-2 d-flex flex-column   ">
-            <div className="">dscsd</div>
-            <div className="">dscsd</div>
-          </div>
-          {/* footer left    */}
-          <div className="col-md-8 col-xs-8 d-flex flex-column  text-black">
-            <div className="">dscsd</div>
-            <div className="">dscsd</div>
-          </div>
-          {/* footer right    */}
-          <div className="col-md-4 col-xs-4 d-flex flex-column text-black ">
-            <div className="">dscsd</div>
-            <div className="">dscsd</div>
-          </div>{" "}
+                  {/* <OrdersPanel /> */}
+                  {/* <Balances /> */}
+                </div>
+                <div className="col-md-8 col-xs-8 d-flex flex-column">
+                  <Charts />
+                  {/* <OrdersManager /> */}
+                </div>
+              </div>
+              <div
+                className="col-md-12 col-xs-12 d-flex flex-column px-4"
+                style={{ height: "40vh" }}
+              >
+                <OrdersPanel />
+              </div>
+            </Grid>
+            {/* middle column  */}
+            <Grid item sm={2} xs={12}>
+              {/* {!extend && <Ticker />} */}
+              <div style={{ height: "100vh" }}>
+                {(!extend || extend === NAMES.ORDER_BOOK) && (
+                  <OrderBook
+                    onMouseEnter={() => this._extend(NAMES.ORDER_BOOK)}
+                    onMouseLeave={() => this._extend(null)}
+                  />
+                )}
+                {(!extend || extend === NAMES.TRADE_HISTORY) && (
+                  <TradeHistory
+                    onMouseEnter={() => this._extend(NAMES.TRADE_HISTORY)}
+                    onMouseLeave={() => this._extend(null)}
+                  />
+                )}
+              </div>
+            </Grid>
+            <Grid
+              item
+              sm={2}
+              xs={12}
+              style={{
+                height: "80vh",
+                paddingRight: "1rem",
+                paddingLeft: "1rem",
+              }}
+            >
+              {/* right column */}
+              <OrdersManager />
+              <Balances />
+            </Grid>
+          </Grid>
         </div>
+        <div className="col-md-4">
+          <OrdersManager />
+        </div>
+
         {showCrossOrder && (
           <Modal onClose={this._toggleShowCrossOrder}>
             <CrossOrder />

@@ -23,6 +23,7 @@
     "d3-dsv": "^1.0.8",
     "d3-format": "^1.2.2",
     "d3-scale": "^2.0.0",
+    "dayjs": "^1.10.4",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.0.1",
     "emotion": "^9.0.1",

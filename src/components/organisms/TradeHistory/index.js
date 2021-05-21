@@ -46,21 +46,36 @@ class TradeHistory extends React.Component {
     return (
       <div
         className={cx("main-item-box full-width", $.tradeHistory)}
-        style={{ background: "white", color: "black" }}
+        style={{ background: "white", color: "black", height: "30vh" }}
         onMouseEnter={this._onMouseEnter}
         onMouseLeave={this._onMouseLeave}
       >
         <header>
-          <h3 style={{ color: "black" }}>{l("title")}</h3>
+          <h3 style={{ color: "black" }}>
+            {/* {l("title")} */}
+            Market Geçmişi
+          </h3>
         </header>
         <div className={cx("default-table", $.table)}>
           <div
             className={$.header}
-            style={{ background: theme.colors.mainGray, padding: ".5rem" }}
+            style={{
+              background: theme.colors.mainGray,
+              padding: ".5rem",
+            }}
           >
-            <div className={$.head}>{l("columns.size")}</div>
-            <div className={$.head}>{l("columns.price")}</div>
-            <div className={$.head}>{l("columns.time")}</div>
+            <div className={$.head} style={{ fontSize: ".5rem" }}>
+              {/* {l("columns.price")} */}
+              Fiyat (TRY)
+            </div>
+            <div className={$.head} style={{ fontSize: ".5rem" }}>
+              {/* {l("columns.size")} */}
+              Miktar (BTC){" "}
+            </div>
+            <div className={$.head} style={{ fontSize: ".5rem" }}>
+              {/* {l("columns.time")} */}
+              Tarih{" "}
+            </div>
           </div>
           <div className={$.lines} ref={(el) => (this._container = el)}>
             {history.slice(0, this._maxLines).map(this._renderLine)}
@@ -83,7 +98,12 @@ class TradeHistory extends React.Component {
     });
 
     return (
-      <div key={index} className={$.line} onClick={() => onLineClick(line)}>
+      <div
+        key={index}
+        className={$.line}
+        onClick={() => onLineClick(line)}
+        style={{ fontSize: ".5rem" }}
+      >
         <div className={cx($.column, color)}>
           <div className={icon} />
           {format(line.p)}

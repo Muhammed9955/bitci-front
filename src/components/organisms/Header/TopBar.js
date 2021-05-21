@@ -1,14 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import BTC from "../../general/svg/BTC";
 import Theme from "../../../theme/index";
 import TopbarItem from "./TopbarItem";
 import Menu from "../../general/MUI/MenuMUI";
 import CustomizedSlider from "../../general/MUI/CustomizedSlider";
-const Header = () => {
-  const gray = Theme.colors.lightCyan;
+
+import { connect } from "react-redux";
+import { getTranslate } from "react-localize-redux";
+import numeral from "numeral";
+
+import { connectData, DATA_TYPES } from "utils/collector";
+import { getPriceFormat } from "store/state/app/selectors";
+import * as api from "api";
+
+const MAX_PERCENT = 100;
+const Header = (props) => {
+  const {
+    current,
+    high,
+    low,
+    volume,
+    changeAbsolute,
+    changePercent,
+    selectedPair,
+    l,
+    format,
+  } = props;
+  console.log({ props });
+  const gray = Theme.colors.gray;
   const lightGreen = Theme.colors.lightGreen;
   const months = ["1 Ay", "2 Ay", "3 Ay"];
   const pairs = ["BTC/TRY", "BAT/TRY", "BCH/TRY"];
+  const [profitAndLoss, setProfitAndLoss] = useState([]);
+
+  api.getPairs().then((pairs) => {
+    // console.log({ pairs });
+    return pairs;
+  });
+
+  api.getProfitLoss().then((profitLossRes) => {
+    // console.log({ profitLossRes });
+    setProfitAndLoss(profitLossRes);
+  });
+  console.log({ profitAndLoss });
+  const profitAndLossForPair = profitAndLoss.filter(
+    (i) => i.selectedPair === selectedPair
+  );
+  // console.log({ profitAndLossForPair });
   return (
     <div
       className="text-black  mt-2 mb-4 mx-3 "
@@ -20,15 +58,14 @@ const Header = () => {
     >
       <div className="p-2 d-flex flex-row align-items-center bg-white  ">
         <BTC />
-        <Menu options={pairs} />
-        {/* <p className="align-items-center  mx-2 ">BTC/TRY</p> */}
+        <Menu options={pairs} btnStyle={{ fontSize: ".7rem" }} />
       </div>
       <div className="p-2 d-flex flex-row bg-white align-items-center mx-1">
         <div className=" d-flex flex-column mx-1 bg-white">
-          <div className="" style={{ fontSize: ".9rem" }}>
-            461.181,12
+          <div className="" style={{ fontSize: ".6rem" }}>
+            {current}
           </div>
-          <div className="" style={{ fontSize: ".8rem", color: gray }}>
+          <div className="" style={{ fontSize: ".5rem", color: gray }}>
             $55,112.81
           </div>
         </div>
@@ -37,33 +74,95 @@ const Header = () => {
             borderRadius: "5px",
             background: lightGreen,
             color: "white",
-            fontSize: ".8rem",
+            fontSize: ".5rem",
           }}
           className="p-1 ml-2"
         >
-          %+2.15
+          %{changePercent.toFixed(2)}
         </div>
-        <TopbarItem />
-        <TopbarItem />
-        <TopbarItem />
-        <TopbarItem />
-        <TopbarItem />
+        <TopbarItem title="24s Değişim" value={format(changeAbsolute)} />
+        <TopbarItem title="24s En Yüksek" value={format(high)} />
+        <TopbarItem title="24s En Düşük" value={format(low)} />
+        <TopbarItem title="24s Hacim" value={volume.toFixed(3)} />
       </div>
-      <div className="p-2 d-flex flex-row align-items-center bg-white mr-1 ">
+      <div
+        className="p-2 d-flex flex-row align-items-center bg-white mr-1"
+        style={{ width: "15vw" }}
+      >
         <CustomizedSlider />
-        <Menu options={months} />
+        <div className="ml-1">
+          <Menu
+            options={months}
+            btnStyle={{ fontSize: ".7rem", padding: "0" }}
+          />
+        </div>
       </div>
       <div className="p-2 d-flex flex-row bg-white mr-1 ">
-        <TopbarItem />
-        <TopbarItem />
-        <TopbarItem />
-        <TopbarItem />
-        <TopbarItem />
-        <TopbarItem />
-        <TopbarItem />
+        <TopbarItem
+          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
+          title="Adet"
+        />
+        <TopbarItem
+          value={profitAndLoss.length > 0 && profitAndLoss[0].avgcost}
+          title="Ort. Br. Maliyet"
+        />
+        <TopbarItem
+          value={profitAndLoss.length > 0 && profitAndLoss[0].totalcost}
+          title="Toplam Maliyet"
+        />
+        <TopbarItem
+          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
+          title="Şimdiki Toplam Değeri"
+        />
+        <TopbarItem
+          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
+          title="Fark"
+        />
+        <TopbarItem
+          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
+          title="Fark%"
+        />
+        <TopbarItem
+          value={profitAndLoss.length > 0 && profitAndLoss[0].totalamount}
+          title="Global Değer"
+        />
       </div>
     </div>
   );
 };
 
-export default Header;
+const mapDataToProps = ({ current: data = {} }) => {
+  const {
+    c: current = 0,
+    h: high = 0,
+    l: low = 0,
+    v: volume = 0,
+    o: open = 0,
+  } = data;
+  const changeAbsolute = current - open;
+  const changePercent =
+    changeAbsolute === 0
+      ? 0
+      : open === 0
+      ? MAX_PERCENT
+      : (changeAbsolute / open) * MAX_PERCENT;
+
+  return {
+    current,
+    high,
+    low,
+    volume,
+    changeAbsolute,
+    changePercent,
+  };
+};
+
+const mapStateToProps = ({ app, locale }) => ({
+  selectedPair: app.selectedPair,
+  l: (key) => getTranslate(locale)("tickerPanel." + key),
+  format: (val) => numeral(val).format(getPriceFormat(app)),
+});
+
+export default connect(mapStateToProps)(
+  connectData(DATA_TYPES.COLL_CURRENT_TICKER_24, mapDataToProps)(Header)
+);

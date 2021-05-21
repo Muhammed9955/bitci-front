@@ -83,7 +83,7 @@ export default function CustomizedSlider() {
   const gray = theme.colors.gray;
 
   return (
-    <div className={classes.root} style={{ fontSize: ".7rem" }}>
+    <div className={classes.root} style={{ fontSize: ".5rem" }}>
       {/* <Typography gutterBottom>pretto.fr</Typography> */}
 
       <div

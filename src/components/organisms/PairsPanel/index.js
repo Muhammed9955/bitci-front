@@ -7,6 +7,7 @@ import { cx } from "react-emotion";
 import numeral from "numeral";
 import sortBy from "lodash/sortBy";
 import SearchIcon from "@material-ui/icons/Search";
+import StarIcon from "@material-ui/icons/Star";
 
 import { selectPair, setPairFav } from "store/state/app/actions";
 import {
@@ -22,6 +23,22 @@ import BTC from "../../general/svg/BTC";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import Btn from "../../general/Btn";
+import { Button } from "@material-ui/core";
+const btnStyleActive = {
+  background: theme.colors.orange,
+  padding: "5px",
+  fontSize: ".7rem",
+  color: "white",
+  fontWeight: "bold",
+  borderRadius: "5px",
+};
+const btnStyle = {
+  padding: "5px",
+  fontSize: ".7rem",
+  fontWeight: "bold",
+  background: "none",
+};
+const btnsArr = ["TRY", "BTCI", "CHFT"];
 class PairsList extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +46,10 @@ class PairsList extends React.Component {
     this.state = {
       searchFilter: "",
       isSearchMode: false,
+      activeBtn: {
+        index: 0,
+        value: "TRY",
+      },
     };
 
     this._searchInput = null;
@@ -171,13 +192,44 @@ class PairsList extends React.Component {
             placeholder="Koin ara…"
           />
         </div>
+        <div className="d-flex flex-row align-items-center px-2 justify-content-between">
+          <div className="d-flex flex-row align-items-center mr-2">
+            <StarIcon
+              style={{ fontSize: "1rem", color: theme.colors.mainDarkGray }}
+            />
+            <div style={{ fontSize: ".8rem", marginLeft: "5px" }}>
+              Favoriler
+            </div>
+          </div>
+          {btnsArr.map((i, n) => (
+            <button
+              style={
+                n === this.state.activeBtn.index ? btnStyleActive : btnStyle
+              }
+              onClick={() => {
+                setCurrencyFilter(i);
+                this.setState({
+                  ...this.state,
+                  activeBtn: {
+                    index: n,
+                    value: i,
+                  },
+                });
+              }}
+            >
+              {i}
+            </button>
+          ))}
+        </div>
         <div className=""> {listItems}</div>
-        <header>
-          <h3>{l("title")}</h3>
-        </header>
+
         <div className={cx("default-table is-scrolled", $.table)}>
           <table>
-            <thead style={{ background: "#F2F2F2" }}>
+            <thead
+              style={{
+                background: theme.colors.mainGray,
+              }}
+            >
               <tr>
                 <td>
                   {/* <a className={$.favSwitcher} onClick={toggleOnlyFavorites}>
@@ -193,7 +245,8 @@ class PairsList extends React.Component {
                   className="p-2 text-right"
                 >
                   <div className="d-flex flex-row align-items-center ">
-                    {l("columns.pair")}
+                    {/* {l("columns.pair")} */}
+                    İşlem Çifti
                     {arrow}
                   </div>
                 </td>
@@ -203,22 +256,27 @@ class PairsList extends React.Component {
                     display: "flex",
                     // fontSize: ".6rem",
                   }}
-                  className="text-right p-2"
+                  className="text-left p-2"
                 >
                   <div className="d-flex flex-row align-items-center ">
+                    {/* {l("columns.volume")} */}
+                    Hacim
                     {arrow}
-                    {l("columns.volume")}
+                    <div className="mr-1 ">
+                      {/* {l("columns.price")} */}
+                      Fiyat
+                    </div>
                     {arrow}
-                    <div className="mr-1 ">{l("columns.price")}</div>
                   </div>
                 </td>
                 {/* <td style={{ color: "black" }} className="text-right">
                   {isVolumeMode ? l("columns.volume") : l("columns.change")}
                   {l("columns.volume")}
                 </td> */}
-                <td style={{ color: "#9B9B9B" }} className="text-left p-2">
-                  <div className="d-flex flex-row align-items-center">
-                    {l("columns.change")}
+                <td style={{ color: "#9B9B9B", marginRight: "5rem" }}>
+                  <div className="d-flex flex-row align-items-center text-left ">
+                    {/* {l("columns.change")} */}
+                    Değişim
                     {arrow}
                   </div>
                 </td>
@@ -252,26 +310,34 @@ class PairsList extends React.Component {
         >
           {/* {favorite && <i className="icon icon-heart-gray" />} */}
         </td>
-        <td style={{ color: "black", display: "flex", alignItems: "center" }}>
+        <td
+          style={{
+            color: "black",
+            display: "flex",
+            alignItems: "center",
+            minWidth: "100px",
+          }}
+        >
           <BTC />
-          <div className="d-flex flex-column ml-2">
-            {pair}
+          <div
+            className="d-flex flex-column ml-2"
+            style={{
+              fontSize: ".6rem",
+            }}
+          >
+            <div className="">{pair}</div>
             <div className="mt-1" style={{ color: this.gray }}>
               Coin Name
             </div>
           </div>
         </td>
-        <td style={{ color: "black" }}>
+        <td style={{ color: "black" }} className="text-left">
           <div className="d-flex flex-column bg-gray ">
-            {isUndef(volume) ? (
-              <div className="text-right">0</div>
-            ) : (
-              <div className="text-right"> {volume.toFixed(2)}</div>
-            )}
+            {isUndef(volume) ? <div>0</div> : <div> {volume.toFixed(2)}</div>}
             {isUndef(current) ? (
-              <div className="text-right">_</div>
+              <div>_</div>
             ) : (
-              <div className="text-right mt-1" style={{ opacity: ".4" }}>
+              <div className=" mt-1" style={{ opacity: ".4" }}>
                 {numeral(current).format(format)}
               </div>
             )}
@@ -283,7 +349,7 @@ class PairsList extends React.Component {
           </td>
         )} */}
 
-        <td style={{ color: "black" }} className="text-right">
+        <td style={{ color: "black" }} className="text-left">
           {isUndef(changePercent) ? "_" : changePercent.toFixed(2) + "%"}
         </td>
       </tr>
@@ -377,6 +443,7 @@ const mapStateToProps = ({ app, locale, ui }) => {
   const currenciesForFilter = Array.from(
     new Set(pairNames.map((pairName) => pairName.split("-")[1]))
   );
+  console.log({ currenciesForFilter });
   const {
     favorites: onlyFavorites,
     currency: currencyFilter,

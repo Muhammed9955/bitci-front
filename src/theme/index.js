@@ -15,7 +15,7 @@ export default {
     halfGreen: "#0E3224",
     darkGreen: "#07211a",
     dark: "#001012",
-    orange: "#EA5607",
+    orange: "#FE5000",
     lightGreen: "#03A66D",
     mainBG: "#F9F9F9",
     mainDarkGray: "#9B9B9B",
