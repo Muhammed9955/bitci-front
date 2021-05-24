@@ -5,7 +5,9 @@ const TopbarItem = ({ title, value }) => {
   const gray = theme.colors.gray;
 
   return (
-    <div className="d-flex flex-column mx-1 bg-white mx-2">
+    <div
+      className="d-flex flex-column mx-1 bg-white mx-2"
+    >
       <div
         className=""
         style={{

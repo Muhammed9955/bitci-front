@@ -55,8 +55,11 @@ export const lineRed = css`
     background: ${theme.colors.red};
   }
 
-  .${column}:nth-last-child(2):not(:nth-child(2)) {
+  /* .${column}:nth-last-child(2):not(:nth-child(2)) {
     color: ${theme.colors.red};
+  } */
+  .${column}:nth-last-child(2):not(:nth-child(2)) {
+    color: ${theme.colors.dark};
   }
 
   @media (max-width: ${theme.breakPoints.mobile.max}px) {
@@ -71,8 +74,12 @@ export const lineGreen = css`
     background: ${theme.colors.green};
   }
 
-  .${column}:nth-last-child(2):not(:nth-child(2)) {
+  /* .${column}:nth-last-child(2):not(:nth-child(2)) {
     color: ${theme.colors.green};
+  } */
+
+  .${column}:nth-last-child(2):not(:nth-child(2)) {
+    color: ${theme.colors.dark};
   }
 
   @media (max-width: ${theme.breakPoints.mobile.max}px) {

@@ -88,7 +88,7 @@ const Header = (props) => {
   };
   getData();
   console.log({ SelectedDate });
-  console.log({ selectedData: selectedData.unix() });
+  console.log({ selectedData: selectedData && selectedData.unix() });
 
   // api.getPairData(selectedPair, now, selectedData.unix()).then((pair) => {
   //   console.log({ pair });
@@ -173,7 +173,7 @@ const Header = (props) => {
         <div className="ml-1">
           <Menu
             options={months}
-            btnStyle={{ fontSize: ".7rem", padding: "0" }}
+            btnStyle={{ fontSize: ".6rem", padding: "0" }}
             SelectedDate={SelectedDate}
             onClose={setSelectedDate}
           />

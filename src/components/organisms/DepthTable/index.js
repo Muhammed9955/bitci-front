@@ -10,6 +10,7 @@ import { Desktop } from "components/layout";
 import { getPriceFormat } from "store/state/app/selectors";
 
 import * as $ from "./index.style";
+import theme from "../../../theme";
 
 class DepthTable extends React.Component {
   constructor(props) {
@@ -58,7 +59,10 @@ class DepthTable extends React.Component {
             className={lineClass}
             onClick={() => onLineClick(line)}
           >
-            <div className={`${$.column} ml-2`} style={{ color: "black" }}>
+            <div
+              className={`${$.column} ml-2`}
+              style={{ color: red ? "red" : theme.colors.green }}
+            >
               {format(line.price)}
             </div>
             <div className={$.column} style={{ color: "black" }}>
@@ -72,7 +76,7 @@ class DepthTable extends React.Component {
               className={$.bar}
               style={{
                 transform: `scaleX(${line.size / maxSize})`,
-                transformOrigin: "left",
+                transformOrigin: "right",
               }}
             />
           </div>

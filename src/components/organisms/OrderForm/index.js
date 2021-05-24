@@ -243,7 +243,7 @@ const OrderForm = (props) => {
               )
             }
             tabIndex="0"
-            style={{ color: "black" }}
+            style={{ color: "black", textDecoration: "none" }}
           >
             <div
               style={{
@@ -266,7 +266,7 @@ const OrderForm = (props) => {
               )
             }
             tabIndex="0"
-            style={{ color: "black" }}
+            style={{ color: "black", textDecoration: "none" }}
           >
             <div
               style={{
@@ -287,7 +287,7 @@ const OrderForm = (props) => {
               )
             }
             tabIndex="0"
-            style={{ color: "black" }}
+            style={{ color: "black", textDecoration: "none" }}
           >
             <div
               style={{
@@ -308,7 +308,7 @@ const OrderForm = (props) => {
               )
             }
             tabIndex="0"
-            style={{ color: "black" }}
+            style={{ color: "black", textDecoration: "none" }}
           >
             <div
               style={{
@@ -337,11 +337,10 @@ const OrderForm = (props) => {
           style={{ color: theme.colors.mainDarkGray }}
         >
           <span
-            className="title col-md-4 col-xs-4"
+            // className=" col-md-4 col-xs-4"
             style={{
               color: theme.colors.mainDarkGray,
               fontSize: ".5rem",
-              width: "3rem",
               paddingLeft: "1rem",
             }}
           >
@@ -357,6 +356,7 @@ const OrderForm = (props) => {
               color: "black",
               fontSize: ".6rem",
               padding: "0 2.5rem 0 1.5rem",
+              height: "1.6rem",
             }}
           />
           <span

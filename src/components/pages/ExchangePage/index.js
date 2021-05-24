@@ -94,9 +94,6 @@ class ExchangePage extends React.Component {
               </Grid>
             </Grid>
           </div>
-          <div className="col-md-4">
-            <OrdersManager />
-          </div>
 
           {/* //! don't know wt is it for */}
           {showCrossOrder && (

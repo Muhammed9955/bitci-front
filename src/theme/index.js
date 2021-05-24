@@ -22,6 +22,7 @@ export default {
     mainGray: "#F2F2F2",
     mainGreen: "#03A66D",
     mainRed: "red",
+    black: "#fffff",
   },
   breakPoints: {
     mobile: {

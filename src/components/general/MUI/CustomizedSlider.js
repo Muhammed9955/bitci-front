@@ -8,7 +8,7 @@ import theme from "../../../theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 300 + theme.spacing(3) * 2,
+    minWidth: 120,
   },
   margin: {
     height: theme.spacing(3),

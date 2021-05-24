@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const defualtBtnStyle = {
-  fontSize: ".7rem",
+  // fontSize: ".7rem",
   textTransform: "capitalize",
   background: "none",
   display: "flex",
