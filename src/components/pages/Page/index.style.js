@@ -1,7 +1,6 @@
-import {css} from 'react-emotion'
+import { css } from "react-emotion";
 
-import theme from 'theme'
-
+import theme from "theme";
 
 export const page = css`
   width: 100%;
@@ -11,11 +10,11 @@ export const page = css`
   margin-right: auto;
   margin-left: auto;
   flex: 1;
-  
-  @media(max-width: ${theme.breakPoints.mobile.max}px) {
+
+  @media (max-width: ${theme.breakPoints.mobile.max}px) {
     padding: 0 0 65px;
     background: ${theme.colors.dark};
     display: flex;
     flex-direction: column;
   }
-`
+`;

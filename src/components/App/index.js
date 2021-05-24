@@ -35,8 +35,7 @@ class App extends Component {
           <ThemeProvider theme={theme}>
             <div className={$.app}>
               {/* <Desktop component={Header} /> */}
-              <Desktop component={Header} />
-              <Desktop component={TopBar} />
+              {/* <Desktop component={TopBar} /> */}
 
               <Desktop component={Switch}>
                 <Route path={paths.EXCHANGE} component={ExchangePage} />
@@ -58,7 +57,7 @@ class App extends Component {
                 {/* <Footer /> */}
                 <Toasts />
               </Desktop>
-
+              {/* 
               <Mobile component={Switch}>
                 <Route path={paths.MARKETS} component={MarketsPage} />
                 <Route path={paths.TRADES} component={TradesPage} />
@@ -72,6 +71,22 @@ class App extends Component {
                 )}
 
                 <Redirect to={paths.MARKETS} />
+              </Mobile> */}
+
+              <Mobile>
+                <Route path={paths.EXCHANGE} component={ExchangePage} />
+                <Route path={paths.ORDERS} component={OrdersPage} />
+                <Route path={paths.WALLETS} component={WalletsPage} />
+                <Route path={paths.ACCOUNT} component={AccountPage} />
+                <Route path={paths.ADMIN} component={Admin} />
+                {process.env.NODE_ENV === "development" && (
+                  <Route
+                    path={paths.EMBEDDED_TEST}
+                    component={EmbeddedTestPage}
+                  />
+                )}
+
+                <Redirect to={paths.EXCHANGE} />
               </Mobile>
 
               <Mobile component={BottomMenu} />

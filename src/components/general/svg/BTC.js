@@ -1,11 +1,13 @@
 import React from "react";
 
-const BTC = () => {
+const BTC = ({ width = 30, height = 30 }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="31.996"
-      height="32"
+      // width="31.996"
+      // height="32"
+      width={width}
+      height={height}
       viewBox="0 0 31.996 32"
     >
       <g id="Bitcoin" transform="translate(0.001)">

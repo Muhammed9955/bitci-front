@@ -20,6 +20,7 @@ export default {
     mainBG: "#F9F9F9",
     mainDarkGray: "#9B9B9B",
     mainGray: "#F2F2F2",
+    mainGreen: "#03A66D",
   },
   breakPoints: {
     mobile: {

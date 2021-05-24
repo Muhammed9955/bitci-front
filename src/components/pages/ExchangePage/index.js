@@ -39,77 +39,72 @@ class ExchangePage extends React.Component {
     const { extend, showCrossOrder } = this.state;
 
     return (
-      <Page>
-        <div className="row h-100">
-          {/* left column */}
-          <Grid container>
-            <Grid item sm={8} xs={12} style={{ height: "80vh" }}>
-              <div
-                className="col-md-12 col-xs-12 d-flex flex-row"
-                style={{ height: "40vh" }}
-              >
-                <div className="col-md-4 col-xs-4 d-flex flex-column">
-                  <PairsPanel />
-
-                  {/* <OrdersPanel /> */}
-                  {/* <Balances /> */}
+      <div style={{ marginTop: "-1rem" }}>
+        <Page>
+          <div className="row h-100">
+            {/* left column */}
+            <Grid container>
+              <Grid item sm={8} xs={12}>
+                <div className="col-md-12 col-xs-12 d-flex flex-row vh-100 ">
+                  <div className="col-md-4 col-xs-12 d-flex flex-column">
+                    <PairsPanel />
+                  </div>
+                  <div className="col-md-8 col-xs-12 d-flex flex-column">
+                    <Charts />
+                  </div>
                 </div>
-                <div className="col-md-8 col-xs-8 d-flex flex-column">
-                  <Charts />
-                  {/* <OrdersManager /> */}
+                <div
+                  className="col-md-12 col-xs-12 d-flex flex-column px-4"
+                  style={{ height: "40vh" }}
+                >
+                  <OrdersPanel />
                 </div>
-              </div>
-              <div
-                className="col-md-12 col-xs-12 d-flex flex-column px-4"
-                style={{ height: "40vh" }}
+              </Grid>
+              {/* middle column  */}
+              <Grid item sm={2} xs={12}>
+                {/* {!extend && <Ticker />} */}
+                <div style={{ height: "100vh" }}>
+                  {(!extend || extend === NAMES.ORDER_BOOK) && (
+                    <OrderBook
+                      onMouseEnter={() => this._extend(NAMES.ORDER_BOOK)}
+                      onMouseLeave={() => this._extend(null)}
+                    />
+                  )}
+                  {(!extend || extend === NAMES.TRADE_HISTORY) && (
+                    <TradeHistory
+                      onMouseEnter={() => this._extend(NAMES.TRADE_HISTORY)}
+                      onMouseLeave={() => this._extend(null)}
+                    />
+                  )}
+                </div>
+              </Grid>
+              <Grid
+                item
+                sm={2}
+                xs={12}
+                style={{
+                  height: "80vh",
+                  paddingRight: "2rem",
+                  paddingLeft: "1rem",
+                }}
               >
-                <OrdersPanel />
-              </div>
+                {/* right column */}
+                <OrdersManager />
+                <Balances />
+              </Grid>
             </Grid>
-            {/* middle column  */}
-            <Grid item sm={2} xs={12}>
-              {/* {!extend && <Ticker />} */}
-              <div style={{ height: "100vh" }}>
-                {(!extend || extend === NAMES.ORDER_BOOK) && (
-                  <OrderBook
-                    onMouseEnter={() => this._extend(NAMES.ORDER_BOOK)}
-                    onMouseLeave={() => this._extend(null)}
-                  />
-                )}
-                {(!extend || extend === NAMES.TRADE_HISTORY) && (
-                  <TradeHistory
-                    onMouseEnter={() => this._extend(NAMES.TRADE_HISTORY)}
-                    onMouseLeave={() => this._extend(null)}
-                  />
-                )}
-              </div>
-            </Grid>
-            <Grid
-              item
-              sm={2}
-              xs={12}
-              style={{
-                height: "80vh",
-                paddingRight: "1rem",
-                paddingLeft: "1rem",
-              }}
-            >
-              {/* right column */}
-              <OrdersManager />
-              <Balances />
-            </Grid>
-          </Grid>
-        </div>
-        <div className="col-md-4">
-          <OrdersManager />
-        </div>
-
-        {showCrossOrder && (
-          <Modal onClose={this._toggleShowCrossOrder}>
-            <CrossOrder />
-          </Modal>
-        )}
-      </Page>
+          </div>
+          <div className="col-md-4 col-xs-12">
+            <OrdersManager />
+          </div>
+          {/* //! don't know wt is it for */}
+          {showCrossOrder && (
+            <Modal onClose={this._toggleShowCrossOrder}>
+              <CrossOrder />
+            </Modal>
+          )}
+        </Page>
+      </div>
     );
   }
 

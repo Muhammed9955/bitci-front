@@ -46,7 +46,12 @@ class TradeHistory extends React.Component {
     return (
       <div
         className={cx("main-item-box full-width", $.tradeHistory)}
-        style={{ background: "white", color: "black", height: "30vh" }}
+        style={{
+          background: "white",
+          color: "black",
+          height: "30vh",
+          padding: "0",
+        }}
         onMouseEnter={this._onMouseEnter}
         onMouseLeave={this._onMouseLeave}
       >
@@ -56,7 +61,7 @@ class TradeHistory extends React.Component {
             Market Geçmişi
           </h3>
         </header>
-        <div className={cx("default-table", $.table)}>
+        <div className={cx("default-table", $.table)} style={{ padding: "0" }}>
           <div
             className={$.header}
             style={{
@@ -102,10 +107,12 @@ class TradeHistory extends React.Component {
         key={index}
         className={$.line}
         onClick={() => onLineClick(line)}
-        style={{ fontSize: ".5rem" }}
+        style={{ fontSize: ".5rem", padding: "0 5px " }}
       >
         <div className={cx($.column, color)}>
-          <div className={icon} />
+          <div
+          // className={icon}
+          />
           {format(line.p)}
         </div>
         <div className={$.column} style={{ color: "black" }}>

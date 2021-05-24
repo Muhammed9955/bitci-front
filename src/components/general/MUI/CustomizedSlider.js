@@ -78,7 +78,7 @@ const PrettoSlider = withStyles({
   },
 })(Slider);
 
-export default function CustomizedSlider() {
+export default function CustomizedSlider({ Pairdata }) {
   const classes = useStyles();
   const gray = theme.colors.gray;
 
@@ -90,8 +90,8 @@ export default function CustomizedSlider() {
         className="d-flex flex-row align-items-center justify-content-between"
         style={{ marginBottom: "-.8rem" }}
       >
-        <div className="">$ 48.226,36</div>
-        <div className="">$ 66.129,23</div>
+        <div className="">${Pairdata && Pairdata.i} </div>
+        <div className="">${Pairdata && Pairdata.h} </div>
       </div>
       <PrettoSlider
         valueLabelDisplay="auto"

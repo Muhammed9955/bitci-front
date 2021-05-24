@@ -11,6 +11,7 @@ import { Desktop, Mobile } from "components/layout";
 import { setValue } from "store/state/ui/forms/actions";
 import { ORDER_BUY, ORDER_SELL } from "store/state/ui/forms/constants";
 import { getPriceFormat } from "store/state/app/selectors";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
 import * as $ from "./index.style";
 import theme from "../../../theme";
@@ -25,7 +26,8 @@ class OrderBook extends React.Component {
   }
 
   render() {
-    const { currPrice, isGreater, selectedPair, l, format } = this.props;
+    const { currPrice, isGreater, selectedPair, l, format, changePercent } =
+      this.props;
     const { isHovering } = this.state;
 
     const icon = cs("icon ml-2", {
@@ -37,11 +39,17 @@ class OrderBook extends React.Component {
       [$.incrementAreaRed]: !isGreater,
     });
     const currencies = selectedPair ? selectedPair.split("-") : ["", ""];
-
+    const p = changePercent && format(changePercent);
+    console.log({ propsOrderBook: this.props });
     return (
       <div
         className={cx("main-item-box full-width", $.orderBook)}
-        style={{ background: "white", color: "black", height: "50vh" }}
+        style={{
+          background: "white",
+          color: "black",
+          height: "50vh",
+          padding: "0",
+        }}
         onMouseEnter={this._onMouseEnter}
         onMouseLeave={this._onMouseLeave}
       >
@@ -51,7 +59,10 @@ class OrderBook extends React.Component {
             Emir Defteri
           </h3>
         </Desktop>
-        <div className={cx("default-table", $.table)} style={{ width: "100%" }}>
+        <div
+          className={cx("default-table", $.table)}
+          style={{ width: "100%", padding: "0" }}
+        >
           <div
             className={$.header}
             style={{
@@ -89,13 +100,26 @@ class OrderBook extends React.Component {
               onLineClick={this._onBuyLineClick}
             />
           </div>
-          <div className={incrementArea}>
-            {format(currPrice)}&nbsp;
-            <Desktop
-              component="i"
-              className={icon}
-              style={{ width: 14, height: 8 }}
-            />
+          <div
+            className={incrementArea}
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center",
+              color: theme.colors.mainGreen,
+              fontSize: ".7rem",
+            }}
+          >
+            <div className="" style={{ color: theme.colors.mainDarkGray }}>
+              Son İşlem
+            </div>
+            <div className="" style={{ fontWeight: "bold" }}>
+              {format(currPrice)}&nbsp;TRY
+            </div>
+            <div className="d-flex flex-row align-items-center">
+              <ExpandLessIcon style={{ color: theme.colors.mainGreen }} />
+              <div className="ml-1">{p} 2.15</div>
+            </div>
           </div>
           <div className={$.depthTableContainer}>
             <SellDepthTable
@@ -150,10 +174,15 @@ class OrderBook extends React.Component {
 const mapDataToProps = ({
   current: currPrice = 0,
   prev: prevCurrPrice = 0,
-}) => ({
-  currPrice,
-  isGreater: currPrice > prevCurrPrice,
-});
+}) => {
+  // const changeAbsolute = current - open;
+  // const changePercent =
+  //   changeAbsolute === 0 ? 0 : open === 0 ? 100 : (changeAbsolute / open) * 100;
+  return {
+    currPrice,
+    isGreater: currPrice > prevCurrPrice,
+  };
+};
 
 const mapStateToProps = ({ app, locale }) => ({
   selectedPair: app.selectedPair,

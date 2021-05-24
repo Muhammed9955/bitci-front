@@ -36,8 +36,13 @@ export const getProfitLoss = () =>
     .get("/getprofitloss")
     .then(({ data: pairs }) => pairs)
     .catch(catchHandlerCreator([]));
+export const getPairData = (pair, fromHour, toHour) =>
+  axios
+    .get(`/tickerstat/${pair}/${fromHour}/${toHour}`)
+    .then(({ data: pair }) => pair)
+    .catch(catchHandlerCreator([]));
 
-    // old APIs
+// old APIs
 export const getPairs = () =>
   axios
     .get("/pairs")

@@ -58,15 +58,16 @@ class DepthTable extends React.Component {
             className={lineClass}
             onClick={() => onLineClick(line)}
           >
-            <div className={$.column} style={{ color: "black" }}>
+            <div className={`${$.column} ml-2`} style={{ color: "black" }}>
               {format(line.price)}
             </div>
             <div className={$.column} style={{ color: "black" }}>
               {line.size}
             </div>
-            <Desktop component="div" className={$.column}>
+            <div className={`${$.column} mr-2`}>{line.total.toFixed(5)}</div>
+            {/* <Desktop component="div" className={$.column}>
               {line.total.toFixed(5)}
-            </Desktop>
+            </Desktop> */}
             <div
               className={$.bar}
               style={{

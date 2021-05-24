@@ -102,6 +102,7 @@ class OrdersPanel extends React.Component {
       <div
         className={cs("main-item-box", $.ordersPanel)}
         style={{ background: "white" }}
+        
       >
         <header className={$.tabs}>
           <span
