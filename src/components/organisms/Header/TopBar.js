@@ -90,11 +90,11 @@ const Header = (props) => {
   console.log({ SelectedDate });
   console.log({ selectedData: selectedData.unix() });
 
-  api.getPairData(selectedPair, now, selectedData.unix()).then((pair) => {
-    console.log({ pair });
-    setPairdata(pair);
-    return pair;
-  });
+  // api.getPairData(selectedPair, now, selectedData.unix()).then((pair) => {
+  //   console.log({ pair });
+  //   setPairdata(pair);
+  //   return pair;
+  // });
 
   api.getProfitLoss().then((profitLossRes) => {
     // console.log({ profitLossRes });

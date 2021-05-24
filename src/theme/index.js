@@ -11,7 +11,7 @@ export default {
     red: "#EF403F",
     halfRed: "#241718",
     darkRed: "#181416",
-    green: "#46B86D",
+    green: "#03A66D",
     halfGreen: "#0E3224",
     darkGreen: "#07211a",
     dark: "#001012",
@@ -21,6 +21,7 @@ export default {
     mainDarkGray: "#9B9B9B",
     mainGray: "#F2F2F2",
     mainGreen: "#03A66D",
+    mainRed: "red",
   },
   breakPoints: {
     mobile: {

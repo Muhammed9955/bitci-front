@@ -1,10 +1,20 @@
-import React from 'react'
-import cs from 'classnames'
+import React from "react";
+import cs from "classnames";
 
-import * as $ from './index.style'
+import * as $ from "./index.style";
 
-
-const Input = ({sm, lg, green, red, dark, textCenter, className, before, after, ...props}) => {
+const Input = ({
+  sm,
+  lg,
+  green,
+  red,
+  dark,
+  textCenter,
+  className,
+  before,
+  after,
+  ...props
+}) => {
   const inputClassName = cs(
     $.input,
     {
@@ -15,18 +25,18 @@ const Input = ({sm, lg, green, red, dark, textCenter, className, before, after, 
       [$.sm]: sm,
       [$.textCenter]: textCenter,
     },
-    className,
-  )
+    className
+  );
 
   return (
-    <div className={inputClassName}>
+    <div className={inputClassName} style={{ color: "black" }}>
       {before && <div className={$.before}>{before}</div>}
       <div className={$.inputContainer}>
-        <input type="text" className={$.inputEl} {...props}/>
+        <input type="text" className={$.inputEl} {...props} />
       </div>
       {after && <div className={$.after}>{after}</div>}
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;

@@ -12,12 +12,21 @@ const btnStyle = {
   background: theme.colors.mainGray,
   color: theme.colors.mainDarkGray,
   fontWeight: "bold",
+  fontSize: ".5rem",
 };
-const btnStyleActive = {
-  background: "green",
+const btnStyleBuy = {
+  background: theme.colors.green,
   color: "white",
   fontWeight: "bold",
+  fontSize: ".5rem",
 };
+const btnStyleSell = {
+  background: "red",
+  color: "white",
+  fontWeight: "bold",
+  fontSize: ".5rem",
+};
+
 class OrdersManager extends React.Component {
   constructor(props) {
     super(props);
@@ -42,12 +51,12 @@ class OrdersManager extends React.Component {
       <div
         className="main-item-box"
         // style={{ background: "white", color: "black" }}
-        style={{ height: "40vh", background: "white" }}
+        style={{ background: "white", paddingBottom: ".5rem" }}
       >
         <div className="d-flex flex-row">
           <button
             className="col-md-6 p-2"
-            style={this.state.activeBtn === 0 ? btnStyleActive : btnStyle}
+            style={this.state.activeBtn === 0 ? btnStyleBuy : btnStyle}
             onClick={() =>
               this.setState({
                 ...this.state,
@@ -59,7 +68,7 @@ class OrdersManager extends React.Component {
           </button>
           <button
             className="col-md-6 p-2"
-            style={this.state.activeBtn === 1 ? btnStyleActive : btnStyle}
+            style={this.state.activeBtn === 1 ? btnStyleSell : btnStyle}
             onClick={() =>
               this.setState({
                 ...this.state,
@@ -77,7 +86,7 @@ class OrdersManager extends React.Component {
                 className={limitBtn}
                 onClick={() => this._setType(ORDER_TYPES.LIMIT)}
                 tabIndex="0"
-                style={{ color: "black" }}
+                style={{ color: "black", fontSize: ".5rem" }}
               >
                 {l("limit")}
               </a>
@@ -85,7 +94,7 @@ class OrdersManager extends React.Component {
                 className={marketBtn}
                 onClick={() => this._setType(ORDER_TYPES.MARKET)}
                 tabIndex="0"
-                style={{ color: "black" }}
+                style={{ color: "black", fontSize: ".5rem" }}
               >
                 {l("market")}
               </a>
@@ -93,14 +102,14 @@ class OrdersManager extends React.Component {
                 className={stopBtn}
                 onClick={() => this._setType(ORDER_TYPES.STOP)}
                 tabIndex="0"
-                style={{ color: "black" }}
+                style={{ color: "black", fontSize: ".5rem" }}
               >
                 {l("stop")}
               </a>
             </li>
           </ul>
         </header>
-        {/* <Inner type={type} activeBtn={this.state.activeBtn} /> */}
+        <Inner type={type} activeBtn={this.state.activeBtn} />
       </div>
     );
   }

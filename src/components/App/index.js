@@ -34,8 +34,8 @@ class App extends Component {
         <ConnectedRouter history={history}>
           <ThemeProvider theme={theme}>
             <div className={$.app}>
-              {/* <Desktop component={Header} /> */}
-              {/* <Desktop component={TopBar} /> */}
+              <Desktop component={Header} />
+              <Desktop component={TopBar} />
 
               <Desktop component={Switch}>
                 <Route path={paths.EXCHANGE} component={ExchangePage} />

@@ -19,7 +19,7 @@ export default function MenuMUI({ options, btnStyle, onClose, SelectedDate }) {
 
   const handleClose = (item) => {
     setAnchorEl(null);
-    onClose(item);
+    onClose && onClose(item);
   };
 
   return (
@@ -35,7 +35,7 @@ export default function MenuMUI({ options, btnStyle, onClose, SelectedDate }) {
             : defualtBtnStyle
         }
       >
-        {SelectedDate}
+        {SelectedDate ? SelectedDate : options[0]}
         {
           <ExpandMoreIcon
             style={{ fontSize: ".8rem", opacity: ".6", padding: "2px 0 0 2px" }}

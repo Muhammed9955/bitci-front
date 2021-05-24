@@ -16,6 +16,8 @@ import { connectData, DATA_TYPES } from "utils/collector";
 import { getSelectedPairData, getPriceFormat } from "store/state/app/selectors";
 
 import * as $ from "./index.style";
+import theme from "../../../theme";
+import InputCard from "./InputCard";
 
 const FEE = 0.0;
 
@@ -80,308 +82,313 @@ const OrderForm = (props) => {
     "is-green": green,
     "is-red": red,
   });
+
   const btnClass = cs("btn", {
     "btn-success": green,
     "btn-danger": red,
     "btn-info": !green && !red,
   });
-  const submitDisabled = formattedSize < minAmount || formattedTotal < minTotal;
+  const btnColor = red ? "red" : theme.colors.green;
 
+  const submitDisabled = formattedSize < minAmount || formattedTotal < minTotal;
+  const btnBg = green ? theme.colors.green : "red";
   return (
-    <div className={$.orderForm} style={{ color: "black" }}>
-      <Desktop component="div">
-        {/* {[TYPES.STOP, TYPES.LIMIT].includes(type) && (
-          <ul className="inner-list">
-            <li>
-              <a
-                onClick={() => onChange("limit", maxBuyPrice)}
-                tabIndex="0"
-                style={{ color: "black" }}
-              >
-                {l("bid")}
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => onChange("limit", minSellPrice)}
-                tabIndex="0"
-                style={{ color: "black" }}
-              >
-                {l("ask")}
-              </a>
-            </li>
-          </ul>
-        )} */}
-        {[TYPES.STOP].includes(type) && (
-          <div className="dashboard-input" style={{ color: "black" }}>
-            <div className="row align-items-end">
-              <span
-                className="title col-md-4 col-xs-4"
-                style={{ color: "black" }}
-              >
-                {l("stop")}
-                Stop
-              </span>
-              <NumberInput
-                className={inputClass}
-                format={priceFormat}
-                value={stop}
-                onChange={(value) => onChange("stop", value)}
-                placeholder="Stop"
-              />
-              <span className="item-area">
-                <small>{secondCurrency}</small>
-                <span className={cs("buttons", { green: green, red: red })}>
-                  <a
-                    tabIndex="0"
-                    onClick={() => onChange("stop", increase(stop))}
-                  >
-                    <span className="icon icon-triangle-down-gray" />
-                  </a>
-                  <a
-                    tabIndex="0"
-                    onClick={() => onChange("stop", decrease(stop))}
-                  >
-                    <span className="icon icon-triangle-down-gray" />
-                  </a>
-                </span>
-              </span>
-            </div>
-          </div>
-        )}
-        {[TYPES.STOP, TYPES.LIMIT].includes(type) && (
-          <div className="dashboard-input">
-            <div className="row align-items-end">
-              <span
-                className="title col-md-4 col-xs-4"
-                style={{ color: "black" }}
-              >
-                {l("limit")}
-              </span>
-              <NumberInput
-                className={inputClass}
-                value={limit}
-                format={priceFormat}
-                onChange={(value) => onChange("limit", value)}
-              />
-              <span className="item-area">
-                <small>{secondCurrency}</small>
-                <span className={cs("buttons", { green: green, red: red })}>
-                  <a
-                    tabIndex="0"
-                    onClick={() => onChange("limit", increase(limit))}
-                  >
-                    <span className="icon icon-triangle-down-gray" />
-                  </a>
-                  <a
-                    tabIndex="0"
-                    onClick={() => onChange("limit", decrease(limit))}
-                  >
-                    <span className="icon icon-triangle-down-gray" />
-                  </a>
-                </span>
-              </span>
-            </div>
-          </div>
-        )}
-        <div className="dashboard-input">
-          <div className="row align-items-end">
+    <div className={$.orderForm} style={{ color: "black" }} className="mt-2">
+      {[TYPES.STOP].includes(type) && (
+        <div
+          className="dashboard-input"
+          style={{
+            color: theme.colors.mainDarkGray,
+            border: "1px solid lightgray",
+            borderRadius: "4px",
+            padding: "5px",
+          }}
+        >
+          <div
+            className="row align-items-center justify-content-between"
+            style={{
+              width: "100%",
+            }}
+          >
             <span
               className="title col-md-4 col-xs-4"
-              style={{ color: "black" }}
+              style={{ color: theme.colors.mainDarkGray, fontSize: ".5rem" }}
             >
-              {l("amount")}
+              {/* {l("stop")} */}
+              Stop
             </span>
             <NumberInput
-              className={cs("is-active", inputClass)}
-              format={amountFormat}
-              value={size}
-              onChange={(value) => onChange("size", value)}
-            />
-            <span className="item-area">
-              <small className="mt-1">{firstCurrency}</small>
-            </span>
-          </div>
-        </div>
-        <div className={$.minimalTip}>
-          {l("minAmountTip", { amount: minAmount })}
-        </div>
-        <ul className="inner-list">
-          <li>
-            <a
-              onClick={() =>
-                onChange(
-                  "size",
-                  calcSize(balance, formattedPrice, 0.25, amountFormat)
-                )
-              }
-              tabIndex="0"
-            >
-              25%
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() =>
-                onChange(
-                  "size",
-                  calcSize(balance, formattedPrice, 0.5, amountFormat)
-                )
-              }
-              tabIndex="0"
-            >
-              50%
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() =>
-                onChange(
-                  "size",
-                  calcSize(balance, formattedPrice, 0.75, amountFormat)
-                )
-              }
-              tabIndex="0"
-            >
-              75%
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() =>
-                onChange(
-                  "size",
-                  calcSize(balance, formattedPrice, 1.0, amountFormat)
-                )
-              }
-              tabIndex="0"
-            >
-              100%
-            </a>
-          </li>
-        </ul>
-        <div className="dashboard-input">
-          <div className="row align-items-end">
-            <span className="title col-md-4 col-xs-4">{l("total")}</span>
-            <input
               className={inputClass}
-              type="text"
-              readOnly
-              value={formattedTotal}
+              format={priceFormat}
+              value={stop}
+              onChange={(value) => onChange("stop", value)}
+              placeholder="Stop"
             />
-            <span className="item-area">
-              <small className="mt-1">{secondCurrency}</small>
+            {/* <smallsty>{secondCurrency}</smallsty> */}
+            <span style={{ paddingRight: "-10px", fontSize: ".7rem" }}>
+              <small>{secondCurrency}</small>
+              {/* <span className={cs("buttons", { green: green, red: red })}>
+                <a
+                  tabIndex="0"
+                  onClick={() => onChange("stop", increase(stop))}
+                >
+                  <span className="icon icon-triangle-down-gray" />
+                </a>
+                <a
+                  tabIndex="0"
+                  onClick={() => onChange("stop", decrease(stop))}
+                >
+                  <span className="icon icon-triangle-down-gray" />
+                </a>
+              </span> */}
             </span>
           </div>
         </div>
-        <div className={$.minimalTip}>
-          {l("minTotalTip", { total: minTotal })}
-        </div>
-        <div className="dashboard-input" style={{ marginTop: 10 }}>
-          <div className="row align-items-end">
-            <span className="title col-md-4 col-xs-4">
-              {/*{l('fee')}:*/}
-              {/*<b className="d-block">5.65 BTC</b>*/}
-            </span>
-            <button
-              className={btnClass}
-              onClick={onSubmit}
-              disabled={submitDisabled}
+      )}
+      {[TYPES.STOP, TYPES.LIMIT].includes(type) && (
+        <div
+          className="dashboard-input"
+          style={{
+            color: theme.colors.mainDarkGray,
+            border: "1px solid lightgray",
+            borderRadius: "4px",
+            padding: "5px",
+          }}
+        >
+          <div
+            className="row align-items-center"
+            style={{ color: theme.colors.mainDarkGray, width: "100%" }}
+          >
+            <span
+              className="title col-md-4 col-xs-4"
+              style={{ color: theme.colors.mainDarkGray, fontSize: ".5rem" }}
             >
-              {submitTxt}
-            </button>
+              {/* {l("limit")} */}
+              fiayt
+            </span>
+            <NumberInput
+              className={inputClass}
+              value={limit}
+              format={priceFormat}
+              onChange={(value) => onChange("limit", value)}
+            />
+            <span
+              // className="item-area"
+              style={{ paddingRight: "-10px", fontSize: ".7rem" }}
+            >
+              <small>{secondCurrency}</small>
+              {/* <span className={cs("buttons", { green: green, red: red })}>
+                <a
+                  tabIndex="0"
+                  onClick={() => onChange("limit", increase(limit))}
+                >
+                  <span className="icon icon-triangle-down-gray" />
+                </a>
+                <a
+                  tabIndex="0"
+                  onClick={() => onChange("limit", decrease(limit))}
+                >
+                  <span className="icon icon-triangle-down-gray" />
+                </a>
+              </span> */}
+            </span>
           </div>
         </div>
-      </Desktop>
-      <Mobile component="div" className={$.inner}>
-        {[TYPES.STOP].includes(type) && (
-          <PriceInput
-            price={stop}
-            onChange={(value) => onChange("stop", value)}
-            green={green}
-            red={red}
-          />
-        )}
-        {[TYPES.STOP, TYPES.LIMIT].includes(type) && (
-          <PriceInput
-            price={limit}
-            onChange={(value) => onChange("limit", value)}
-            green={green}
-            red={red}
-          />
-        )}
-        {/*<div className={$.equivalent}>{l('equivalent')} $3.45</div>*/}
-        <PriceInput
-          price={size}
-          onChange={(value) => onChange("size", value)}
-          green={green}
-          red={red}
-          format={amountFormat}
-        />
-        <div className={$.sizes}>
+      )}
+      <div
+        className="dashboard-input"
+        style={{
+          color: theme.colors.mainDarkGray,
+          border: "1px solid lightgray",
+          borderRadius: "4px",
+          padding: "5px",
+        }}
+      >
+        <div
+          className="row align-items-center "
+          style={{ color: theme.colors.mainDarkGray, width: "100%" }}
+        >
           <span
+            className="title col-md-4 col-xs-4"
+            style={{ color: theme.colors.mainDarkGray, fontSize: ".5rem" }}
+          >
+            {/* {l("amount")} */}
+            Miktar
+          </span>
+          <NumberInput
+            className={cs("is-active", inputClass)}
+            format={amountFormat}
+            value={size}
+            onChange={(value) => onChange("size", value)}
+          />
+          <span
+            // className="item-area"
+            style={{ marginLeft: "-.5rem", fontSize: ".7rem" }}
+          >
+            <small className="mt-1">{firstCurrency}</small>
+          </span>
+        </div>
+      </div>
+      {/* <div className={$.minimalTip}>
+        {l("minAmountTip", { amount: minAmount })}
+      </div> */}
+
+      <ul className="inner-list " style={{ marginRight: ".5px" }}>
+        <li>
+          <a
             onClick={() =>
               onChange(
                 "size",
                 calcSize(balance, formattedPrice, 0.25, amountFormat)
               )
             }
+            tabIndex="0"
+            style={{ color: "black" }}
           >
+            <div
+              style={{
+                background: theme.colors.green,
+                borderTopLeftRadius: "1rem",
+                borderBottomLeftRadius: "1rem",
+                height: "1rem",
+                width: "2rem",
+              }}
+            />
             25%
-          </span>
-          <span
+          </a>
+        </li>
+        <li>
+          <a
             onClick={() =>
               onChange(
                 "size",
                 calcSize(balance, formattedPrice, 0.5, amountFormat)
               )
             }
+            tabIndex="0"
+            style={{ color: "black" }}
           >
+            <div
+              style={{
+                background: theme.colors.green,
+                height: "1rem",
+                width: "2rem",
+              }}
+            />
             50%
-          </span>
-          <span
+          </a>
+        </li>
+        <li>
+          <a
             onClick={() =>
               onChange(
                 "size",
                 calcSize(balance, formattedPrice, 0.75, amountFormat)
               )
             }
+            tabIndex="0"
+            style={{ color: "black" }}
           >
+            <div
+              style={{
+                background: theme.colors.mainGray,
+                height: "1rem",
+                width: "2rem",
+              }}
+            />
             75%
-          </span>
-          <span
+          </a>
+        </li>
+        <li>
+          <a
             onClick={() =>
               onChange(
                 "size",
                 calcSize(balance, formattedPrice, 1.0, amountFormat)
               )
             }
+            tabIndex="0"
+            style={{ color: "black" }}
           >
+            <div
+              style={{
+                background: theme.colors.mainGray,
+                height: "1rem",
+                width: "2rem",
+                borderTopRightRadius: "1rem",
+                borderBottomRightRadius: "1rem",
+              }}
+            />
             100%
+          </a>
+        </li>
+      </ul>
+      <div
+        className="dashboard-input"
+        style={{
+          color: theme.colors.mainDarkGray,
+          border: "1px solid lightgray",
+          borderRadius: "4px",
+          padding: "0 5px",
+        }}
+      >
+        <div
+          className="row align-items-center"
+          style={{ color: theme.colors.mainDarkGray }}
+        >
+          <span
+            className="title col-md-4 col-xs-4"
+            style={{
+              color: theme.colors.mainDarkGray,
+              fontSize: ".5rem",
+              width: "3rem",
+              paddingLeft: "1rem",
+            }}
+          >
+            {/* {l("total")} */}
+            Toplam Fiyat
+          </span>
+          <input
+            className={inputClass}
+            type="text"
+            readOnly
+            value={formattedTotal}
+            style={{
+              color: "black",
+              fontSize: ".6rem",
+              padding: "0 2.5rem 0 1.5rem",
+            }}
+          />
+          <span
+            // className="item-area"
+            style={{ marginLeft: "-2rem", fontSize: ".7rem" }}
+          >
+            <small className="mt-1">{secondCurrency}</small>
           </span>
         </div>
-        <Input
-          value={formattedTotal}
-          readOnly
-          green={green}
-          red={red}
-          textCenter
-        />
-        <div className={$.available}>
-          <span>{l("available")}</span>
-          <span>
-            {format(balance)} {secondCurrency}
-          </span>
-        </div>
-        <Button
+      </div>
+      {/* <div className={$.minimalTip}>
+        {l("minTotalTip", { total: minTotal })}
+      </div> */}
+      <div
+        //  className="dashboard-input"
+        style={{ width: "100%" }}
+      >
+        <button
+          // className={btnClass}
           onClick={onSubmit}
           disabled={submitDisabled}
-          green={green}
-          red={red}
+          style={{
+            height: "2rem",
+            width: "100%",
+            padding: "0",
+            background: btnColor,
+            color: "white",
+          }}
         >
           {submitTxt}
-        </Button>
-      </Mobile>
+        </button>
+      </div>
     </div>
   );
 };

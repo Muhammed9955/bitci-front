@@ -28,7 +28,15 @@ class Inner extends React.Component {
     );
 
     return (
-      <div className={innerClassName} style={{ color: "black" }}>
+      <div
+        // className={innerClassName}
+        style={{
+          color: "black",
+          padding: "0",
+          height: "100%",
+          width: "100%",
+        }}
+      >
         {this.props.activeBtn === 0 && this._renderBuySide()}
         {this.props.activeBtn === 1 && this._renderSellSide()}
       </div>
@@ -42,7 +50,7 @@ class Inner extends React.Component {
     const sideClassName = cs("col-md-12 col-xs-12", $.side);
 
     return (
-      <div className={sideClassName} style={{ color: "black" }}>
+      <div className={sideClassName} >
         <OrderForm
           type={type}
           size={size}
